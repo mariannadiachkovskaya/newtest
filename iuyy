@@ -1,0 +1,74 @@
+package lab5;
+
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.spec.ECField;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class zad2{
+    public static void main(String [] args) throws IOException{
+       Scanner sc = new Scanner;
+        try{
+           System.out.println("Название файла:");
+           File f1 = new File("/Users/diachkovskayamarianna/Desktop/lab5.txt");
+           f1.createNewFile();
+           DataOutputStream wr = null;
+           if (!file.exists()){
+               try{
+                   wr = new DataOutputStream(new FileOutputStream(file));
+                   try{
+                       System.out.println("Введите числа:");
+                       while (true){
+                           w3r.writeInt(sc.nextInt());
+                       }
+                   } catch(InputMismatchException e){
+                       wr.flush();
+                       wr.close();
+                       
+                   }
+               }catch(Exception e){
+
+               }
+           }
+       } catch (Exception e){
+           System.out.println("Ошибка: "+ e)
+       }
+
+
+       System.out.println(file.getAbsolutePath());
+
+
+       try{
+           DataInputStream rd = new DataInputStream(new FileInputStream(file));
+            while (true){
+                int number = rd.readInt();
+                if (number % 3 == 0){
+                    wr.writeInt(number);
+                    System.out.println("Число "+ (int)number);
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File isn't founded");
+        } 
+        catch(EOFException e){
+           wr.flush();
+           wr.close();
+           rd.close(); 
+        }
+        catch (Exception e){
+            System.out.println ("Error: "+ e);
+        }
+        catch (IOException e){
+            System.out.println("End of file");
+        }
+    }
+}
